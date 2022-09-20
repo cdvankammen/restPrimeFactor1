@@ -29,7 +29,6 @@ public class RestPrimeFactorController {
         //list of all factors given the number
         List<Integer> listOfFactors = restPrimeFactorService.factor(number);
 
-
         if(!listOfFactors.isEmpty()) {
             return new ResponseEntity<>(new PrimeFactorsJsonObject(number,listOfFactors), HttpStatus.OK);
         }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RestPrimeFactorService {
@@ -28,6 +29,7 @@ public class RestPrimeFactorService {
         if (numberToFactor> 2) {
             listOfFactors.add(numberToFactor);
         }
-        return listOfFactors;
+
+        return listOfFactors.stream().distinct().collect(Collectors.toList());
     }
 }
