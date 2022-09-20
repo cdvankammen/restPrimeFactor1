@@ -35,7 +35,7 @@ public class RestPrimeFactorControllerTest {
         assertThat(jsonEntity, is(notNullValue()));
 
         //utility checks
-        assertThat(jsonEntity, is(equalTo(RESPONSE_ENTITY.));
+        assertThat(jsonEntity, is(equalTo(RESPONSE_ENTITY));
     }
 
 }
