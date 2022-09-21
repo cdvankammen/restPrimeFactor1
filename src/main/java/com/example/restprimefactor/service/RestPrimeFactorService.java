@@ -1,5 +1,6 @@
 package com.example.restprimefactor.service;
 
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class RestPrimeFactorService {
             numberToFactor/= 2;
         }
 
-
         for (int i = 3; i <= Math.sqrt(numberToFactor); i += 2) {
             while (numberToFactor% i == 0) {
                 listOfFactors.add(i);
@@ -26,10 +26,10 @@ public class RestPrimeFactorService {
             }
         }
 
-        if (numberToFactor> 2) {
+        if (numberToFactor > 2) {
             listOfFactors.add(numberToFactor);
+            System.out.println(numberToFactor);
         }
-
         return listOfFactors.stream().distinct().collect(Collectors.toList());
     }
 }
