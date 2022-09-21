@@ -17,22 +17,17 @@ public class RestPrimeFactorService {
             try {
                 while (numberToFactor % 2 == 0) {
                     listOfFactors.add(2);
-                    System.out.println(listOfFactors + " first");
                     numberToFactor /= 2;
                 }
-                System.out.println(numberToFactor + " first AA");
                 for (int i = 3; i <= Math.sqrt(numberToFactor); i += 2) {
                     while (numberToFactor % i == 0) {
                         listOfFactors.add(i);
-                        System.out.println(listOfFactors + " second");
                         numberToFactor /= i;
                     }
                 }
-                System.out.println(numberToFactor + " seocond AA");
 
                 if (numberToFactor >= 2) {
                     listOfFactors.add(numberToFactor);
-                    System.out.println(numberToFactor + " third");
                 }
 
 
