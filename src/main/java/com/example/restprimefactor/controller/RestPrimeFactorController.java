@@ -1,14 +1,15 @@
 package com.example.restprimefactor.controller;
 
-import com.example.restprimefactor.dto.PrimeFactorsJsonObject;
+import com.example.restprimefactor.model.PrimeFactorsJsonObject;
 import com.example.restprimefactor.service.RestPrimeFactorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.NoHandlerFoundException;
-
 import java.util.List;
+import java.util.logging.Logger;
+
 
 @RestController
 public class RestPrimeFactorController {
@@ -19,13 +20,11 @@ public class RestPrimeFactorController {
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
     public String welcomeText(){
-        return "Welcome to rest prime factor the way to show the prime " +
-                "factors for your number! \n TO BEGIN: \n put a number after " +
-                "the \" / \" in the URL";
+        return restPrimeFactorService.welcomeScreen();
     }
 
     @GetMapping("/{number}")
-    public ResponseEntity<PrimeFactorsJsonObject> getPrimeNumberFactors(@PathVariable int number){
+    public ResponseEntity<PrimeFactorsJsonObject> getPrimeNumberFactors(@PathVariable int number ) {
         //Return the factors of Number given with JSON output
         //list of all factors given the number
         List<Integer> listOfFactors = restPrimeFactorService.factor(number);
@@ -34,14 +33,18 @@ public class RestPrimeFactorController {
             return new ResponseEntity<>(new PrimeFactorsJsonObject(number,listOfFactors), HttpStatus.OK);
         }
         else {
-            errorHandlingWrongInput();
-            return ResponseEntity.noContent().build();
+            return new ResponseEntity<>(new PrimeFactorsJsonObject(number,
+                    listOfFactors),HttpStatus.NO_CONTENT);
         }
     }
 
-    @ExceptionHandler(NumberFormatException.class)
-    public String errorHandlingWrongInput(){
-        return "Please provide a valid integer to factor";
+    @ExceptionHandler
+    public String errorHandlingWrongInput(Exception e){
+        Logger.getLogger("Error with Rest Prime Factor Controller" + e);
+        return restPrimeFactorService.invalidInput();
     }
+
+
+
 
 }

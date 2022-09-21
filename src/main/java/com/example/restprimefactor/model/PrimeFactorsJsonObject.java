@@ -1,4 +1,4 @@
-package com.example.restprimefactor.dto;
+package com.example.restprimefactor.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
