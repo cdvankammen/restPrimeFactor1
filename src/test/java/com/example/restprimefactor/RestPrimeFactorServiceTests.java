@@ -19,6 +19,9 @@ class RestPrimeFactorServiceTests {
     private int PRIME_NUMBER = 20;
     private List<Integer> PRIME_FACTOR_LIST = Arrays.asList(1,2,5);
 
+    private int NEGATIVE_PRIME_NUMBER = -1;
+    private List<Integer> NEGATIVE_PRIME_FACTOR_LIST = Arrays.asList();
+
 
     @Test
     void getFactors(){
@@ -29,6 +32,18 @@ class RestPrimeFactorServiceTests {
         //Correct value check
         assertThat(listOfFactors, is(equalTo(PRIME_FACTOR_LIST)));
     }
+
+    @Test
+    void testNegativeGetFactor(){
+        List<Integer> listOfFactors = restPrimeFactorService.factor(NEGATIVE_PRIME_NUMBER);
+        //Null Checks
+        assertThat(listOfFactors, is(not(nullValue())));
+
+        //Correct value check
+        assertThat(listOfFactors, is(equalTo(NEGATIVE_PRIME_FACTOR_LIST)));
+    }
+
+
 
 
 }

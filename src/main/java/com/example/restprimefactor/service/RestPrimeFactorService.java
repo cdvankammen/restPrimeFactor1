@@ -30,6 +30,7 @@ public class RestPrimeFactorService {
             listOfFactors.add(numberToFactor);
             System.out.println(numberToFactor);
         }
+
         return listOfFactors.stream().distinct().collect(Collectors.toList());
     }
 }

@@ -37,4 +37,9 @@ public class RestPrimeFactorController {
         }
     }
 
+    @GetMapping("/error")
+    public String errorHandlingWrongInput(){
+        return "Please provide a valid integer to factor";
+    }
+
 }
