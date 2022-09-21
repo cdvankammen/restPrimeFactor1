@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.util.List;
 
@@ -33,11 +34,12 @@ public class RestPrimeFactorController {
             return new ResponseEntity<>(new PrimeFactorsJsonObject(number,listOfFactors), HttpStatus.OK);
         }
         else {
+            errorHandlingWrongInput();
             return ResponseEntity.noContent().build();
         }
     }
 
-    @GetMapping("/error")
+    @ExceptionHandler(NumberFormatException.class)
     public String errorHandlingWrongInput(){
         return "Please provide a valid integer to factor";
     }
